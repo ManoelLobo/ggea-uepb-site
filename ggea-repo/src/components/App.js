@@ -1,93 +1,84 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { indigo500 } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import Drawer from 'material-ui/Drawer';
-import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
-import Paper from 'material-ui/Paper';
+import MenuItem from 'material-ui/MenuItem';
+import { Tab, Tabs} from 'material-ui/Tabs';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import Header from './Header';
 import Footer from './Footer';
+import Publication from './Publication';
 
-const muiTheme = getMuiTheme({
-  appBar: {
-    color: indigo500
-  }
-});
+import muiTheme from '../theme.js';
+
+const pub1 = {
+  id: 1,
+  title: "Gestão de resíduos sólidos em condomínio vertical: possibilidades e desafios",
+  author: "DANTAS, Manoel Thiago Nogueira da Silva",
+  year: "2017",
+  abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin sem orci, in lacinia urna sollicitudin sed. Etiam ullamcorper in eros vitae tincidunt. Suspendisse faucibus, nunc ut feugiat iaculis, mauris elit consectetur tortor, eget pharetra neque quam vel eros. Morbi sollicitudin sit amet leo vitae eleifend. Mauris malesuada lectus arcu, at commodo lectus molestie sit amet. Praesent fermentum lorem eget est luctus, ac mollis lacus sodales. Curabitur consequat feugiat mollis nullam.",
+  keywords: ["lorem", "ipsum", "dolor"]
+}
+
+const pubs = {
+  1: pub1,
+  2: pub1,
+  3: pub1,
+  4: pub1
+}
 
 class App extends Component {
   constructor() {
     super();
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.renderPublication = this.renderPublication.bind(this);
 
     this.state = {
       menuOpen: false
     }
-
-    console.log(muiTheme);
   }
 
   toggleMenu() {
     this.setState({menuOpen: !this.state.menuOpen})
   }
 
+  renderPublication(key) {
+    return (
+      <Publication pub={pubs[key]}/>
+    );
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
-          <Header toggleMenu={this.toggleMenu} className="header-bar"/>
+          <Header toggleMenu={this.toggleMenu}/>
           <Drawer open={this.state.menuOpen}>
             <AppBar
               title={<span>GGEA Repo</span>}
               iconElementLeft={<IconButton><NavigationClose /></IconButton>}
               onLeftIconButtonTouchTap={this.toggleMenu}
             />
+            <MenuItem>Sobre o GGEA</MenuItem>
+            <MenuItem>Desenvolvimento</MenuItem>
           </Drawer>
           <div className="main">
-            <Paper>
-              <h2>Dissertações</h2>
-              <p>Lista de dissertações</p>
-              <Card>
-                <CardHeader
-                  title="Without Avatar"
-                  subtitle="Subtitle"
-                  actAsExpander={true}
-                  showExpandableButton={true}
-                />
-                <CardActions>
-                  <FlatButton label="Action1" />
-                  <FlatButton label="Action2" />
-                </CardActions>
-                <CardText expandable={true}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                  Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                  Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                </CardText>
-              </Card>
-              <Card style={{margin:"10px"}}>
-                <CardHeader
-                  title="Without Avatar"
-                  subtitle="Subtitle"
-                  actAsExpander={true}
-                  showExpandableButton={true}
-                />
-                <CardActions>
-                  <FlatButton label="Action1" primary={true} />
-                  <FlatButton label="Action2" />
-                </CardActions>
-                <CardText expandable={true}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                  Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                  Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                </CardText>
-              </Card>
-            </Paper>
+          <Tabs>
+            <Tab label="Artigos">
+              {Object.keys(pubs).map(this.renderPublication)}
+            </Tab>
+            <Tab label="Monografias e TCCs">
+              {Object.keys(pubs).map(this.renderPublication)}
+            </Tab>
+            <Tab label="Dissertações">
+              {Object.keys(pubs).map(this.renderPublication)}
+            </Tab>
+            <Tab label="Teses">
+              {Object.keys(pubs).map(this.renderPublication)}
+            </Tab>
+          </Tabs>
           </div>
           <Footer/>
         </div>
