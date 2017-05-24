@@ -15,18 +15,22 @@ import muiTheme from '../theme.js';
 
 const pub1 = {
   id: 1,
-  title: "Gestão de resíduos sólidos em condomínio vertical: possibilidades e desafios",
-  author: "DANTAS, Manoel Thiago Nogueira da Silva",
+  title: "Gestão de resíduos sólidos em condomínio vertical",
+  subtitle: "possibilidades e desafios",
+  author: ["DANTAS, Manoel Thiago Nogueira da Silva", "PESSOA, Outra"],
   year: "2017",
   abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin sem orci, in lacinia urna sollicitudin sed. Etiam ullamcorper in eros vitae tincidunt. Suspendisse faucibus, nunc ut feugiat iaculis, mauris elit consectetur tortor, eget pharetra neque quam vel eros. Morbi sollicitudin sit amet leo vitae eleifend. Mauris malesuada lectus arcu, at commodo lectus molestie sit amet. Praesent fermentum lorem eget est luctus, ac mollis lacus sodales. Curabitur consequat feugiat mollis nullam.",
   keywords: ["lorem", "ipsum", "dolor"]
+  
 }
 
 const pubs = {
   1: pub1,
   2: pub1,
   3: pub1,
-  4: pub1
+  4: pub1,
+  5: pub1,
+  6: pub1
 }
 
 class App extends Component {
@@ -36,7 +40,7 @@ class App extends Component {
     this.renderPublication = this.renderPublication.bind(this);
 
     this.state = {
-      menuOpen: false
+      menuOpen: true
     }
   }
 
@@ -46,7 +50,7 @@ class App extends Component {
 
   renderPublication(key) {
     return (
-      <Publication pub={pubs[key]}/>
+      <Publication key={key} pub={pubs[key]}/>
     );
   }
 
