@@ -25,7 +25,6 @@ class App extends Component {
     this.setState({menuOpen: !this.state.menuOpen})
   }
 
-
   render() {
     return (
       <Router>
@@ -33,11 +32,11 @@ class App extends Component {
           <div className="App">
             <Header toggleMenu={this.toggleMenu}/>
             <SideMenu menuOpen={this.state.menuOpen} toggleMenu={this.toggleMenu}/>
-            <Switch>
-              <Route path={`/em-teste`} exact component={Main}/>
-              <Route component={NotFound}/>
-            </Switch>
-            <div className="main">
+            <div id="main">
+              <Switch>
+                <Route path={`/em-teste`} exact component={Main}/>
+                <Route component={NotFound}/>
+              </Switch>
             </div>
             <Footer/>
           </div>

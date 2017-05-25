@@ -1,26 +1,35 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   font-family: Roboto;
-  margin: 0;
+  margin: 0 0 100px;
   padding: 0;
 }
-#main {
-  min-height: 80%;
-}
 .literature {
-  margin: 1rem !important;
+  margin: 1rem;
 }
 #not-found {
-  padding: 2em;
+  margin: 1rem;
+  padding: 1rem;
+}
+.side-menu-list a {
+  color: #000;
+  text-decoration: none;
 }
 footer {
   background: #fff;
   border-top: 1px solid #c0c0c0;
   color: #575757;
-  height: 80px;
+  bottom: 0;
+  position: absolute;
+  height: 100px;
+  width: 100%;
 }
 footer .logo,
 footer .info {
-  float: left;
+  display: inline-block;
   padding: 1rem;
 }

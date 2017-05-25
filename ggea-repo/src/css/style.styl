@@ -1,24 +1,36 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500"
 
+$footer-height = 100px
+
+html
+  position relative
+  min-height 100%
+
 body
   font-family Roboto
-  margin 0
+  margin 0 0 $footer-height
   padding 0
 
-#main
-  min-height 80%
-
 .literature
-  margin 1rem !important
+  margin 1rem
 
 #not-found
-  padding 2em
+  margin 1rem
+  padding 1rem
+
+.side-menu-list
+  a
+    color black
+    text-decoration none
 
 footer
   background #fff
   border-top 1px solid #c0c0c0
   color #575757
-  height 80px
+  bottom 0
+  position absolute
+  height $footer-height
+  width 100%
   .logo, .info
-    float left
-    padding: 1rem
+    display inline-block
+    padding 1rem

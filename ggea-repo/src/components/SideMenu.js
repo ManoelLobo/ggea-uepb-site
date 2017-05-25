@@ -4,8 +4,7 @@ import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import {List, ListItem} from 'material-ui/List';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 class SideMenu extends React.Component {
@@ -13,15 +12,22 @@ class SideMenu extends React.Component {
     return (
       <Drawer open={this.props.menuOpen}>
         <AppBar
+          id="bar"
           title={<span>GGEA Repo</span>}
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
           onLeftIconButtonTouchTap={this.props.toggleMenu}
         />
-        <Menu onItemTouchTap={this.props.toggleMenu}>
-          <MenuItem><Link to={`/em-teste`}>Publicações científicas</Link></MenuItem>
-          <MenuItem><Link to={`/em-teste`}>Sobre o GGEA</Link></MenuItem>
-          <MenuItem><Link to={`/not-found`}>Desenvolvimento</Link></MenuItem>
-        </Menu>
+        <List className="side-menu-list" onClick={this.props.toggleMenu}>
+          <ListItem>
+            <Link to={`/em-teste`} id="link1">Publicações científicas</Link>
+          </ListItem>
+          <ListItem>
+            <Link to={`/em-teste`}>Sobre o GGEA</Link>
+           </ListItem>
+          <ListItem>
+            <Link to={`/not-found`}>Desenvolvimento</Link>
+          </ListItem>
+        </List>
       </Drawer>
     );
   }
