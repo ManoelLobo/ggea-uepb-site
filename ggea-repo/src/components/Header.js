@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import AppBar from 'material-ui/AppBar';
 
 class Header extends React.Component {
@@ -10,6 +12,10 @@ class Header extends React.Component {
       />
     );
   }
+}
+
+Header.propTypes = {
+  toggleMenu: PropTypes.func.isRequired
 }
 
 export default Header;
